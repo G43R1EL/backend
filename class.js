@@ -44,7 +44,7 @@ const pets = [
 
 const usuario = new User('Nelson', 'Hernández', books, pets)
 usuario.addBook('Fundación', 'Isaac Asimov')
-usuario.addMascota(['Tota', 'Fake', 'Ipa'])
+usuario.addMascota('Tota')
 console.log(usuario.getFullName())
 console.log(usuario.getBookNames())
 console.log(usuario.countMascotas())

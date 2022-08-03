@@ -1,6 +1,6 @@
 // Imports and constants
 const express = require('express')
-const handlebars = require('express-handlebars')
+const pug = require('pug')
 const { Router } = express
 const app = express()
 
@@ -17,16 +17,8 @@ app.use('/api/productos', routerProductos)
 routerProductos.use(express.json())
 routerProductos.use(express.urlencoded({ extended: true }))
 
-// Handlebars config
-const hbs = handlebars.create({
-    extname: 'hbs',
-    defaultLayout: 'main',
-    layoutsDir: __dirname + '/views/layouts/',
-    partialsDir: __dirname + '/views/partials/'
-})
-
-app.engine('hbs', hbs.engine)
-app.set('view engine', 'hbs')
+// PUG configuration
+app.set('view engine', 'pug')
 app.set('views', 'views')
 
 // Endpoints

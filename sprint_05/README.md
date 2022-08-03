@@ -1,0 +1,1 @@
+En cada carpeta se encuentra el servidor funcionando con su respectivo motor de plantillas, para seguir desarrollando voy a utilizar Handlebars ya que anteriormente trabaje con Mustache y son muy parecidos. Además de los tres motores es el que me resulta más amigable en cuanto a estructura comparable con ejs... Y finalmente pug no me gusto en absoluto aunque me recuerda a SASS.

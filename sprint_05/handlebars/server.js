@@ -22,7 +22,6 @@ const hbs = handlebars.create({
     extname: 'hbs',
     defaultLayout: 'main',
     layoutsDir: __dirname + '/views/layouts/',
-    partialsDir: __dirname + '/views/partials/'
 })
 
 app.engine('hbs', hbs.engine)

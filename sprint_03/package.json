@@ -1,0 +1,19 @@
+{
+  "name": "node_server",
+  "version": "1.0.0",
+  "description": "Servidor HTTP - Coderhouse => Backend",
+  "main": "server.js",
+  "scripts": {
+    "test": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "http",
+    "server"
+  ],
+  "author": "Gabriel Hernández",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}

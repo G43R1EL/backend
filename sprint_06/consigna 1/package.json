@@ -1,0 +1,18 @@
+{
+  "name": "express_server",
+  "version": "1.0.0",
+  "description": "Servidor Express - Coderhouse Backend",
+  "main": "server.js",
+  "scripts": {
+    "test": "nodemon ./server.js",
+    "start": "node server.js"
+  },
+  "author": "Nelson Gabriel Hernandez",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "express-handlebars": "^6.0.6",
+    "nodemon": "^2.0.19",
+    "socket.io": "^4.5.1"
+  }
+}

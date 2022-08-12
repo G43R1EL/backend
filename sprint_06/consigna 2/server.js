@@ -1,11 +1,16 @@
 // Imports and constants
 const express = require('express')
+const { Server: HTTPServer } = require('http')
+const { Server: SocketServer } = require('socket.io')
+const events = require('./socket_events')
 const handlebars = require('express-handlebars')
 const { Router } = express
 const app = express()
-
+const http = new HTTPServer(app)
+const socketServer = new SocketServer(http)
 const Container = require('./container')
 const container = new Container('productos.json')
+const messagesContainer = new Container('messages.json')
 
 const routerProductos = Router()
 
@@ -14,6 +19,7 @@ const port = 8080
 
 // Router config
 app.use('/api/productos', routerProductos)
+app.use(express.static('public'))
 routerProductos.use(express.json())
 routerProductos.use(express.urlencoded({ extended: true }))
 
@@ -29,6 +35,14 @@ app.set('view engine', 'hbs')
 app.set('views', 'views')
 
 // Endpoints
+app.get('/products', (req, res) => {
+    container.getAll()
+        .then(products => {
+            res.send(JSON.stringify(products))
+        })
+        .catch(error => { res.status(500).json(error) })
+})
+
 app.get('/', (req, res) => {
     res.render('form')
 })
@@ -58,8 +72,42 @@ routerProductos.post('/', (req, res) => {
     }
 })
 
+// Socket config
+socketServer.on('connection', async socket => {
+    console.log('New client connected')
+    socket.emit('INIT', '')
+    let products = await container.getAll()
+    let messages = await messagesContainer.getAll()
+    socket.emit('products', products)
+    socket.emit('messages', messages)
+    socket.on('NEW_PRODUCT', product => {
+        container.save(product)
+            .then(() => {
+                container.getAll()
+                    .then(data => {
+                        products = data
+                        socketServer.sockets.emit('products', products)
+                    })
+                    .catch(error => { console.log(error) })
+            })
+            .catch(error => { console.log(error) })
+    })
+    socket.on('NEW_MESSAGE', message => {
+        messagesContainer.save(message)
+            .then(() => {
+                messagesContainer.getAll()
+                    .then(data => {
+                        messages = data
+                        socketServer.sockets.emit('messages', messages)
+                    })
+                    .catch(error => { console.log(error) })
+            })
+            .catch(error => { console.log(error) })
+    })
+})
+
 // Server start
-const server = app.listen(port, () => {
+const server = http.listen(port, () => {
     console.log(`Server is running on ${server.address().port}`)
 })
 

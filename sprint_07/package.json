@@ -1,16 +1,13 @@
 {
-  "name": "sprint_07",
+  "name": "express_server",
   "version": "1.0.0",
-  "description": "",
+  "description": "Servidor Express - Coderhouse Backend",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "test": "nodemon server.js",
-    "migrate": "npx knex migrate:latest",
-    "seed": "npx knex seed:run"
+    "test": "nodemon ./server.js",
+    "start": "node server.js"
   },
-  "keywords": [],
-  "author": "",
+  "author": "Nelson Gabriel Hernandez",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.0.1",

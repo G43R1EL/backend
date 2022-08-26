@@ -5,7 +5,10 @@
   "main": "server.js",
   "scripts": {
     "test": "nodemon ./server.js",
-    "start": "node server.js"
+    "start": "node server.js",
+    "createtables": "node ./scripts/createTables.js",
+    "populatetables": "node ./scripts/populateTables.js",
+    "droptables": "node ./scripts/dropTables.js"
   },
   "author": "Nelson Gabriel Hernandez",
   "license": "ISC",

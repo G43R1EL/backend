@@ -8,6 +8,14 @@ const knexConfigMariaDB = {
         user: process.env.DATABASE_USER || 'coderhouse',
         password: process.env.DATABASE_PASSWORD || 'P@ssw0rd',
         database: process.env.DATABASE_NAME || 'coderhouse_db'
+    },
+    migrations: {
+        tableName: 'knex_migrations',
+        directory: './migrations'
+    },
+    seeds: {
+        tableName: 'knex_seeds',
+        directory: './seeds'
     }
 }
 
@@ -16,6 +24,14 @@ const knexConfigSQLite = {
     connection: {
         filename: './data/messages.sqlite',
         database: 'main'
+    },
+    migrations: {
+        tableName: 'knex_migrations',
+        directory: './migrations'
+    },
+    seeds: {
+      tableName: 'knex_seeds',
+      directory: './seeds'
     },
     useNullAsDefault: true
 }

@@ -2,6 +2,7 @@ module.exports = class ContainerDB {
     constructor(knexConfig, tabla) {
         this.knex = require('knex')(knexConfig)
         this.tabla = tabla
+
     }
 
     async save (element) {
